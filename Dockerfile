@@ -10,11 +10,11 @@ RUN apt-get update && \
 
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg && \
     mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg && \
-    sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-stretch-prod stretch main" > /etc/apt/sources.list.d/dotnetdev.list'
-
-RUN apt-get update && \
+    sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-stretch-prod stretch main" > /etc/apt/sources.list.d/dotnetdev.list' && \
+    apt-get update && \
     apt-get install -y dotnet-sdk-2.0.0 && \
     rm -rf /var/lib/apt/lists/*
+
 
 # Download required packages
 RUN mkdir /home/rage/ && \
@@ -36,8 +36,9 @@ RUN cd /tmp/bridge && \
     rm -rf /tmp/bridge
 
 
-EXPOSE 22005 22006
-RUN chmod +x /home/rage
-
+# Expose Ports and start the Server
 WORKDIR /home/rage
+EXPOSE 22005 22006
+
+RUN chmod +x server
 ENTRYPOINT ./server
