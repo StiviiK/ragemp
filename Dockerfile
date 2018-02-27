@@ -38,7 +38,7 @@ RUN cd /tmp/bridge && \
 
 # Expose Ports and start the Server
 WORKDIR /home/rage
-EXPOSE 22005 22006
+EXPOSE 22005/udp 22006
 
 RUN chmod +x server
 ENTRYPOINT ./server
