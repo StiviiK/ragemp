@@ -1,3 +1,4 @@
+Note: On first start run on host `./prepare.sh`
 ```
 docker run \
         -p 22005:22005/udp \
