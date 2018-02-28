@@ -23,22 +23,20 @@ RUN cd /tmp/server && \
     wget -q $SERVER_URL && \
     tar -xzf ragemp-srv.tar.gz && \
     mv -v ragemp-srv/* /home/rage && \
-    cd / && \
     rm -rf /tmp/server
 
 RUN mkdir /tmp/bridge/
 RUN cd /tmp/bridge && \
     wget -q $BRIDGE_URL && \
     tar -xzf bridge-package-linux.tar.gz && \
-    rm bridge-package-linux.tar.gz && \
-    mv -v * /home/rage && \
-    cd / && \
+    mv -v plugins/* /home/rage/plugins && \
     rm -rf /tmp/bridge
-
 
 # Expose Ports and start the Server
 WORKDIR /home/rage
 EXPOSE 22005/udp 22006
 
+ADD ./entrypoint.sh ./entrypoint.sh
 RUN chmod +x server
-ENTRYPOINT ./server
+RUN chmod +x entrypoint.sh
+ENTRYPOINT /bin/bash ./entrypoint.sh
