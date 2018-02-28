@@ -4,7 +4,8 @@ set -e
 if [ ! -e /home/rage/bridge/settings.xml ]; then
 	echo "Downloading bridge default files..."
 
-	mkdir /home/rage/tmp
+	mkdir -p /home/rage/tmp
+	mkdir -p /home/rage/bridge
 	wget -q -O /home/rage/tmp/bridge.tar.gz http://cdn.gtanet.work/bridge-package-linux.tar.gz
 	tar -xzf /home/rage/tmp/bridge.tar.gz -C /home/rage/tmp/
 	mv /home/rage/tmp/bridge/* /home/rage/bridge/
