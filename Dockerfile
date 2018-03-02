@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian
 
 ARG SERVER_URL=https://cdn.rage.mp/lin/ragemp-srv.tar.gz
 ARG BRIDGE_URL=http://cdn.gtanet.work/bridge-package-linux.tar.gz
