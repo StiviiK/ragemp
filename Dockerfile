@@ -10,7 +10,8 @@ RUN apt-get install -y \
     libunwind8 \
     icu-devtools \
     curl \
-    libssl-dev
+    libssl-dev && \
+    rm -rf /var/lib/apt/lists/*
 
 # RUN apt-get install -y \
 #     gettext \
