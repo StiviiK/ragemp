@@ -5,5 +5,5 @@ services:
 script:
   - docker build -t "$DOCKER_USERNAME/$DOCKER_REPONAME" .
   - docker images
-  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+  - docker login -u "$DOCKER_USERNAME" --password-stdin <<< "$DOCKER_PASSWORD"
   - docker push "$DOCKER_USERNAME/$DOCKER_REPONAME"
