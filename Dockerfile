@@ -24,27 +24,35 @@ RUN apt-get install -y \
 #     apt-get install -y dotnet-sdk-2.0.0 && \
 #     rm -rf /var/lib/apt/lists/*
 
+# Add rage user
+ARG USER=rage
+ARG WORKING_DIR=/home/rage/server
+RUN adduser --disabled-password --gecos "" $USER
+RUN mkdir -p $WORKING_DIR
+
 # Download required packages
-RUN mkdir /home/rage/ && \
-    mkdir /tmp/server/
+RUN mkdir /tmp/server/
 RUN cd /tmp/server && \
     wget -q $SERVER_URL && \
     tar -xzf ragemp-srv.tar.gz && \
-    mv -v ragemp-srv/* /home/rage && \
+    mv -v ragemp-srv/* $WORKING_DIR && \
     rm -rf /tmp/server
 
 RUN mkdir /tmp/bridge/
 RUN cd /tmp/bridge && \
     wget -q $BRIDGE_URL && \
     tar -xzf bridge-package-linux.tar.gz && \
-    mv -v plugins/* /home/rage/plugins && \
+    mv -v plugins/* $WORKING_DIR/plugins && \
     rm -rf /tmp/bridge
 
 # Expose Ports and start the Server
-WORKDIR /home/rage
+WORKDIR $WORKING_DIR
+RUN chown -R $USER:$USER .
 EXPOSE 22005/udp 22006
 
 ADD ./entrypoint.sh ./entrypoint.sh
 RUN chmod +x server
 RUN chmod +x entrypoint.sh
-ENTRYPOINT /bin/bash ./entrypoint.sh
+
+USER $USER
+ENTRYPOINT ["/bin/bash", "entrypoint.sh", $WORKING_DIR]
