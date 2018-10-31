@@ -26,7 +26,7 @@ RUN apt-get install -y \
 
 # Add rage user
 ARG USER=rage
-ARG WORKING_DIR=/home/rage/server
+ARG WORKING_DIR=/home/$USER/server
 RUN adduser --disabled-password --gecos "" $USER
 RUN mkdir -p $WORKING_DIR
 
