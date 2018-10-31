@@ -1,9 +1,7 @@
 #!/bin/bash
 set -e
-BASE_DIR=${1}
-cd $BASE_DIR
 
-if [ ! -e $BASE_DIR/bridge/settings.xml ]; then
+if [ ! -e bridge/settings.xml ]; then
 	echo "Downloading bridge default files..."
 
 	mkdir tmp

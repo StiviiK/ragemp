@@ -25,34 +25,32 @@ RUN apt-get install -y \
 #     rm -rf /var/lib/apt/lists/*
 
 # Add rage user
-ARG USER=rage
-ARG WORKING_DIR=/home/$USER/server
-RUN adduser --disabled-password --gecos "" $USER
-RUN mkdir -p $WORKING_DIR
+RUN adduser --disabled-password --gecos "" rage
+RUN mkdir -p /home/rage/server
 
 # Download required packages
 RUN mkdir /tmp/server/
 RUN cd /tmp/server && \
     wget -q $SERVER_URL && \
     tar -xzf ragemp-srv.tar.gz && \
-    mv -v ragemp-srv/* $WORKING_DIR && \
+    mv -v ragemp-srv/* /home/rage/server && \
     rm -rf /tmp/server
 
 RUN mkdir /tmp/bridge/
 RUN cd /tmp/bridge && \
     wget -q $BRIDGE_URL && \
     tar -xzf bridge-package-linux.tar.gz && \
-    mv -v plugins/* $WORKING_DIR/plugins && \
+    mv -v plugins/* /home/rage/server/plugins && \
     rm -rf /tmp/bridge
 
 # Expose Ports and start the Server
-WORKDIR $WORKING_DIR
-RUN chown -R $USER:$USER .
+WORKDIR /home/rage/server
+RUN chown -R rage:rage .
 EXPOSE 22005/udp 22006
 
 ADD ./entrypoint.sh ./entrypoint.sh
 RUN chmod +x server
 RUN chmod +x entrypoint.sh
 
-USER $USER
-ENTRYPOINT ["/bin/bash", "entrypoint.sh", $WORKING_DIR]
+USER rage
+#ENTRYPOINT ["/bin/bash", "entrypoint.sh"]
