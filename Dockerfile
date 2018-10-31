@@ -53,4 +53,4 @@ RUN chmod +x server
 RUN chmod +x entrypoint.sh
 
 USER rage
-#ENTRYPOINT ["/bin/bash", "entrypoint.sh"]
+ENTRYPOINT ["/bin/bash", "entrypoint.sh"]
