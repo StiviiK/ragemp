@@ -3,7 +3,7 @@ services:
   - docker
 
 script:
-  - docker build -t "$DOCKER_USERNAME/$DOCKER_REPONAME" .
+  - docker build -t "$DOCKER_USERNAME/$DOCKER_REPONAME" -f debian/Dockerfile .
   - docker images
   - docker login -u "$DOCKER_USERNAME" --password-stdin <<< "$DOCKER_PASSWORD"
   - docker push "$DOCKER_USERNAME/$DOCKER_REPONAME"
