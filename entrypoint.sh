@@ -6,7 +6,7 @@ if [ ! -e bridge/settings.xml ]; then
 
 	mkdir tmp
 	mkdir bridge
-	wget -q -O tmp/bridge.tar.gz http://cdn.gtanet.work/bridge-package-linux.tar.gz
+	curl http://cdn.gtanet.work/bridge-package-linux.tar.gz -o tmp/bridge.tar.gz
 	tar -xzf tmp/bridge.tar.gz -C tmp/
 	mv tmp/bridge/* bridge/
 	mv tmp/conf.json .
