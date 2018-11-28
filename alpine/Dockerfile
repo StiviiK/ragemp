@@ -9,6 +9,10 @@ RUN apk add \
     icu-dev \
     curl \
     openssl-dev \
+    libunwind \
+    #libstdc++ \
+    #g++ \
+    libc6-compat \
     strace
 
 # Add rage user
@@ -40,4 +44,4 @@ RUN chmod +x server
 RUN chmod +x entrypoint.sh
 
 USER rage
-ENTRYPOINT ["/bin/sh", "entrypoint.sh"]
+#ENTRYPOINT ["/bin/sh", "entrypoint.sh"]
