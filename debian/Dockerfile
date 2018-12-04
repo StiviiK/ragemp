@@ -45,14 +45,12 @@ RUN cd /tmp/bridge && \
 
 # Expose Ports and start the Server
 WORKDIR /home/rage/server
-RUN chown -R rage:rage .
+ADD ./entrypoint.sh ./entrypoint.sh
 EXPOSE 22005/udp 22006
 
-ADD ./entrypoint.sh ./entrypoint.sh
+RUN chown -R rage:rage .
 RUN chmod +x server
 RUN chmod +x entrypoint.sh
-RUN chown rage entrypoint.sh
-RUN chown rage server
 
 USER rage
 ENTRYPOINT ["/bin/sh", "entrypoint.sh"]
