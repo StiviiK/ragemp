@@ -51,6 +51,8 @@ EXPOSE 22005/udp 22006
 ADD ./entrypoint.sh ./entrypoint.sh
 RUN chmod +x server
 RUN chmod +x entrypoint.sh
+RUN chown rage entrypoint.sh
+RUN chown server entrypoint.sh
 
 USER rage
 ENTRYPOINT ["/bin/sh", "entrypoint.sh"]
