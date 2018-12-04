@@ -52,7 +52,7 @@ ADD ./entrypoint.sh ./entrypoint.sh
 RUN chmod +x server
 RUN chmod +x entrypoint.sh
 RUN chown rage entrypoint.sh
-RUN chown server entrypoint.sh
+RUN chown rage server
 
 USER rage
 ENTRYPOINT ["/bin/sh", "entrypoint.sh"]
