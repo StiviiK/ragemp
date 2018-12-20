@@ -1,8 +1,8 @@
 FROM debian
 ARG DEBIAN_FRONTEND=noninteractive
 
-ARG SERVER_URL=https://cdn.rage.mp/lin/ragemp-srv.tar.gz
-ARG BRIDGE_URL=http://cdn.gtanet.work/bridge-package-linux.tar.gz
+ARG SERVER_URL=https://cdn.rage.mp/lin/ragemp-srv-037.tar.gz
+ARG BRIDGE_URL=https://cdn.rage.mp/lin/bridge-linux-037.tar.gz
 
 # Install dependencies
 RUN apt-get update
