@@ -1,7 +1,6 @@
 FROM alpine
 
 ARG SERVER_URL=https://cdn.rage.mp/lin/ragemp-srv-037.tar.gz
-ARG BRIDGE_URL=https://cdn.rage.mp/lin/bridge-linux-037.tar.gz
 
 # Install dependencies
 RUN apk update
@@ -26,13 +25,6 @@ RUN cd /tmp/server && \
     tar -xzf ragemp-srv.tar.gz && \
     mv -v ragemp-srv/* /home/rage/server && \
     rm -rf /tmp/server
-
-RUN mkdir /tmp/bridge/
-RUN cd /tmp/bridge && \
-    curl $BRIDGE_URL -o bridge-package-linux.tar.gz  && \
-    tar -xzf bridge-package-linux.tar.gz && \
-    mv -v plugins/* /home/rage/server/plugins && \
-    rm -rf /tmp/bridge
 
 # Expose Ports and start the Server
 WORKDIR /home/rage/server
