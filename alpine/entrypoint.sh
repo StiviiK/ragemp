@@ -1,15 +1,15 @@
 #!/bin/sh
 set -e
+BRIDGE_URL=https://cdn.rage.mp/lin/bridge-linux-037.tar.gz
 
 if [ ! -e bridge/settings.xml ]; then
 	echo "Downloading bridge default files..."
 
 	mkdir tmp
 	mkdir bridge
-	curl http://cdn.gtanet.work/bridge-package-linux.tar.gz -o tmp/bridge.tar.gz
+	curl $BRIDGE_URL -o tmp/bridge.tar.gz
 	tar -xzf tmp/bridge.tar.gz -C tmp/
 	mv tmp/bridge/* bridge/
-	mv tmp/conf.json .
 	rm -rf tmp
 
 	echo "Done."
