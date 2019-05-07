@@ -3,6 +3,9 @@ services:
   - docker
 
 script:
+  - echo "Enablind experimental docker daemon"
+  - echo '{"experimental":true}' | tee /etc/docker/daemon.json
+  - service docker restart
   - docker build -t "$DOCKER_USERNAME/$DOCKER_REPONAME" ./debian
   - docker images
   - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then docker login -u "$DOCKER_USERNAME" --password-stdin <<< "$DOCKER_PASSWORD"; fi'
