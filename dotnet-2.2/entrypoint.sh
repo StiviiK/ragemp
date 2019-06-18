@@ -18,7 +18,7 @@ if [ ! -e bridge/settings.xml ]; then
     curl $DOTNET_CORE_RUNTIME_URL -o tmp/core.tar.gz
     tar -xzf tmp/core.tar.gz -C tmp/core/
     ls -la -R tmp/core
-    mv -v tmp/core/shared/Microsoft.NETCore.App/2.2.5/* bridge/runtime/
+    mv tmp/core/shared/Microsoft.NETCore.App/2.2.5/* bridge/runtime/
     rm -rf tmp
     echo "Done."
 fi
