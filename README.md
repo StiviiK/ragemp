@@ -1,5 +1,6 @@
-# Dockerd RAGE MP Server
-## Avaiable Tags
+# Dockerd RAGE MP Server on [Docker Hub](http://hub.docker.com/r/stivik/ragemp)
+
+## Available Tags
 - [RAGE 0.3.7](https://github.com/StiviiK/ragemp/tree/0.3.7)
   - .NET Core 3.0 (Preview)
     - `0.3.7-core3`  
@@ -16,5 +17,5 @@ docker run \
   -p 22006:22006 \
   -d \
   --name ragemp-server \
-  stivik/ragemp-server
+  stivik/ragemp
 ```
