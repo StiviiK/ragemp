@@ -1,4 +1,5 @@
 # Dockerd RAGE MP Server on [Docker Hub](http://hub.docker.com/r/stivik/ragemp)
+[![Build Status](https://img.shields.io/docker/cloud/build/stivik/ragemp.svg?style=flat-square)](https://hub.docker.com/r/stivik/ragemp)
 
 ## Available Tags
 - [RAGE 0.3.7](https://github.com/StiviiK/ragemp/tree/0.3.7)
